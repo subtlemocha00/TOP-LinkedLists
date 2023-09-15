@@ -1,15 +1,15 @@
 const LinkedList = () => {
-	let head = null;
+	let headNode = null;
 
-	const getHead = () => {
-		return head;
+	const head = () => {
+		return headNode;
 	};
 
 	const getTail = () => {
-		if (head === null) {
-			return head;
+		if (headNode === null) {
+			return headNode;
 		}
-		let tail = head;
+		let tail = headNode;
 		while (tail.nextNode !== null) {
 			tail = tail.nextNode;
 		}
@@ -18,20 +18,20 @@ const LinkedList = () => {
 
 	const prepend = (value) => {
 		let temp = null;
-		if (head !== null) {
-			temp = head;
-			head = value;
-			head.nextNode = temp;
+		if (headNode !== null) {
+			temp = headNode;
+			headNode = value;
+			headNode.nextNode = temp;
 		}
-		head = Node(value);
-		head.nextNode = temp;
+		headNode = Node(value);
+		headNode.nextNode = temp;
 	};
 
 	const append = (value) => {
-		if (head === null) {
-			head = value;
+		if (headNode === null) {
+			headNode = value;
 		}
-		let currentNode = head;
+		let currentNode = headNode;
 		while (currentNode.nextNode !== null) {
 			currentNode = currentNode.nextNode;
 		}
@@ -40,10 +40,10 @@ const LinkedList = () => {
 
 	const size = () => {
 		let counter = 0;
-		if (head !== null) {
+		if (headNode !== null) {
 			counter++;
 		}
-		let currentNode = head;
+		let currentNode = headNode;
 		while (currentNode.nextNode !== null) {
 			counter++;
 			currentNode = currentNode.nextNode;
@@ -52,7 +52,7 @@ const LinkedList = () => {
 	};
 
 	const at = (position) => {
-		let currentNode = head;
+		let currentNode = headNode;
 		if (currentNode === null) {
 			return currentNode;
 		}
@@ -65,7 +65,7 @@ const LinkedList = () => {
 	};
 
 	const pop = () => {
-		let currentNode = head;
+		let currentNode = headNode;
 		if (currentNode === null) {
 			return null;
 		}
@@ -78,7 +78,7 @@ const LinkedList = () => {
 	};
 
 	const contains = (value) => {
-		let currentNode = head;
+		let currentNode = headNode;
 		if (currentNode === null) {
 			return null;
 		}
@@ -94,7 +94,7 @@ const LinkedList = () => {
 	};
 
 	const find = (value) => {
-		let currentNode = head;
+		let currentNode = headNode;
 		let counter = 0;
 		if (currentNode === null) {
 			return null;
@@ -109,10 +109,10 @@ const LinkedList = () => {
 	};
 
 	const toString = () => {
-		if (head === null) {
+		if (headNode === null) {
 			return "Nothing to console.";
 		}
-		let currentNode = head;
+		let currentNode = headNode;
 		let nodeMap = "";
 		while (currentNode.nextNode !== null) {
 			nodeMap = nodeMap.concat(`( ${currentNode.nodeValue} ) -> `);
@@ -125,12 +125,12 @@ const LinkedList = () => {
 	};
 
 	const insertAt = (value, index) => {
-		if (head === null) {
+		if (headNode === null) {
 			return null;
 		}
 		let newNode = Node(value);
 		let counter = index;
-		let currentNode = head;
+		let currentNode = headNode;
 		while (counter > 0) {
 			currentNode = currentNode.nextNode;
 			counter--;
@@ -138,7 +138,7 @@ const LinkedList = () => {
 		let temp = currentNode.nextNode;
 		if (index <= 0) {
 			newNode.nextNode = currentNode;
-			head = newNode;
+			headNode = newNode;
 		} else {
 			currentNode.nextNode = newNode;
 			currentNode = currentNode.nextNode;
@@ -147,23 +147,23 @@ const LinkedList = () => {
 	};
 
 	const removeAt = (index) => {
-		if (head === null) {
+		if (headNode === null) {
 			return null;
 		}
-		let currentNode = head;
+		let currentNode = headNode;
 		let counter = index - 1;
 		while (counter > 0) {
 			currentNode = currentNode.nextNode;
 			counter--;
 		}
 		if (index <= 0) {
-			head = currentNode.nextNode;
+			headNode = currentNode.nextNode;
 		}
 		currentNode.nextNode = currentNode.nextNode.nextNode;
 	};
 
 	return {
-		getHead,
+		head,
 		getTail,
 		prepend,
 		append,
@@ -184,8 +184,9 @@ const Node = (value) => {
 	return { nodeValue, nextNode };
 };
 
+// ----- DEMO ----- //
 const newList = LinkedList();
-console.log(newList.getHead());
+console.log(newList.head());
 newList.prepend("node 1");
 newList.prepend("node 2");
 newList.prepend("node 3");
@@ -194,7 +195,7 @@ console.log(newList.size());
 newList.append("node A");
 newList.append("node B");
 newList.append("node C");
-console.log(newList.getHead());
+console.log(newList.head());
 console.log(newList.getTail());
 console.log(newList.size());
 console.log(newList.at(5));
